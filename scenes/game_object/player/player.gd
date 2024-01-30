@@ -6,7 +6,7 @@ const ACCELERATION_SMOOTHING = 25
 var number_colliding_bodies = 0
 func _ready():
 	$CollisionArea2D.body_entered.connect(on_body_entered)
-	$CollisionArea2D.body_exited.connect(on_body_entered)
+	$CollisionArea2D.body_exited.connect(on_body_exited)
 	damage_interval_timer.timeout.connect(on_damage_interval_timer_timeout)
 func _process(delta):
 	var movement_vector = get_movement_vector()
