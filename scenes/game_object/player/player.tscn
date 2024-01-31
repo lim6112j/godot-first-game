@@ -1,9 +1,20 @@
-[gd_scene load_steps=8 format=3 uid="uid://dcsuh8dphtkce"]
+[gd_scene load_steps=10 format=3 uid="uid://dcsuh8dphtkce"]
 
 [ext_resource type="Script" path="res://scenes/game_object/player/player.gd" id="1_5ei3w"]
 [ext_resource type="Texture2D" uid="uid://dtlbuxipoa2w3" path="res://scenes/game_object/player/player.png" id="1_53yxf"]
 [ext_resource type="PackedScene" uid="uid://bbt03oegpk4fm" path="res://scenes/ability/sword_ability_controller/sword_ability_controller.tscn" id="2_d3pbf"]
 [ext_resource type="PackedScene" uid="uid://cygnjbmou8dgg" path="res://scenes/component/health_component.tscn" id="2_p5hwc"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ne5eu"]
+bg_color = Color(0.247059, 0.14902, 0.192157, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_od5s1"]
+bg_color = Color(0.254902, 0.886275, 0.701961, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.247059, 0.14902, 0.192157, 1)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wf66u"]
 radius = 30.0
@@ -26,8 +37,21 @@ script = ExtResource("1_5ei3w")
 wait_time = 0.5
 one_shot = true
 
+[node name="HealthBar" type="ProgressBar" parent="."]
+custom_minimum_size = Vector2(32, 6)
+offset_left = -16.0
+offset_top = -22.0
+offset_right = 16.0
+offset_bottom = -16.0
+pivot_offset = Vector2(16, 3)
+theme_override_styles/background = SubResource("StyleBoxFlat_ne5eu")
+theme_override_styles/fill = SubResource("StyleBoxFlat_od5s1")
+max_value = 1.0
+value = 1.0
+show_percentage = false
+
 [node name="PickupArea2D" type="Area2D" parent="."]
-position = Vector2(0, 2)
+position = Vector2(0, -7)
 collision_layer = 16
 collision_mask = 0
 
@@ -35,9 +59,11 @@ collision_mask = 0
 shape = SubResource("CircleShape2D_wf66u")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -8)
 texture = ExtResource("1_53yxf")
 
 [node name="CollisionArea2D" type="Area2D" parent="."]
+position = Vector2(0, -7)
 collision_layer = 0
 collision_mask = 8
 
@@ -45,6 +71,6 @@ collision_mask = 8
 shape = SubResource("CircleShape2D_pg2a5")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 2)
+position = Vector2(0, -7)
 scale = Vector2(0.573536, 0.559003)
 shape = SubResource("CircleShape2D_x28lx")
